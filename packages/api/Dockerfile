@@ -1,0 +1,19 @@
+ARG BASE_IMAGE=node:22.16.0-alpine
+
+FROM ${BASE_IMAGE} AS builder
+WORKDIR /app
+COPY package.json ./
+COPY package-lock.json ./
+COPY packages ./packages
+RUN npm ci --workspace api --omit-dev
+RUN npm run build --workspace api
+
+FROM ${BASE_IMAGE}
+WORKDIR /app
+COPY --from=builder /app/package.json ./
+COPY --from=builder /app/package-lock.json ./
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/packages/api/dist ./packages/api/dist
+COPY --from=builder /app/packages/api/package.json ./packages/api/package.json
+EXPOSE 3000
+CMD ["node", "packages/api/dist/server.js"]

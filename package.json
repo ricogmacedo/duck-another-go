@@ -1,0 +1,22 @@
+{
+  "name": "duck-another-go",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "prepare": "husky install",
+    "frontend:start": "npm --workspace frontend run start",
+    "frontend:build": "npm --workspace frontend run build",
+    "api:start": "npm --workspace api run start",
+    "api:build": "npm --workspace api run build",
+    "api:docker:build": "docker build --no-cache -t duck-another-go-api -f packages/api/Dockerfile.local .",
+    "api:docker:run": "docker run --rm --name duck-another-go-api --env-file packages/api/.env --network host duck-another-go-api",
+    "all:install": "npm install"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.0"
+  }
+}

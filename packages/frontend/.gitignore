@@ -1,0 +1,12 @@
+# Node.js
+node_modules/
+npm-debug.log*
+
+# Build outputs (general, applies to any level)
+dist/**/*
+
+# Environment files
+.env
+
+# IDEs
+.vscode/
