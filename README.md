@@ -4,6 +4,13 @@ A monorepo containing a search application that uses DuckDuckGo's API. The proje
 
 ## Packages
 
+### [Frontend](packages/frontend/README.md)
+A React application built with:
+- TypeScript
+- Redux Toolkit for state management 
+- Joy UI (Material-UI) for components
+- Vite as the build tool
+
 ### [API](packages/api/README.md) 
 A Node.js service that:
 - Proxies requests to DuckDuckGo's API
@@ -27,6 +34,19 @@ npm run all:install
 ```
 
 ### Running the Applications
+
+#### Frontend
+Start the development server:
+```bash
+npm run frontend:start
+```
+The application will be available at `http://localhost:5173`
+
+Build for production:
+```bash
+npm run frontend:build
+```
+
 #### API
 Start normally:
 ```bash
